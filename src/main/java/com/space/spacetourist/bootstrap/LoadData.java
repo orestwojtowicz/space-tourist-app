@@ -2,36 +2,41 @@ package com.space.spacetourist.bootstrap;
 
 import com.space.spacetourist.entities.FlightEntity;
 import com.space.spacetourist.entities.TouristEntity;
+import com.space.spacetourist.entities.UserEntity;
 import com.space.spacetourist.repository.FlightRepository;
 import com.space.spacetourist.repository.TouristRepository;
+import com.space.spacetourist.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class LoadData implements CommandLineRunner {
 
     private final FlightRepository flightRepository;
     private final TouristRepository touristRepository;
+    private final UserRepository userRepository;
 
 
-    LoadData(FlightRepository flightRepository, TouristRepository touristRepository) {
+    LoadData(FlightRepository flightRepository,
+             TouristRepository touristRepository,
+             UserRepository userRepository) {
         this.flightRepository = flightRepository;
         this.touristRepository = touristRepository;
+        this.userRepository = userRepository;
     }
-
-
-
 
     @Override
     public void run(String... args) throws Exception {
 
         buildDatabase();
+        createUser();
         System.out.println("DATABASE INITIALIZED SUCCESSFULLY ");
 
     }
-    private final void buildDatabase() {
+    private void buildDatabase() {
 
         TouristEntity touristEntity1 = TouristEntity.builder()
 
@@ -110,5 +115,10 @@ public class LoadData implements CommandLineRunner {
         flightRepository.save(flightEntity1);
         flightRepository.save(flightEntity2);
 
+    }
+    private void createUser() {
+
+        UserEntity userEntity = new UserEntity(UUID.randomUUID().toString(), "damian", "damian");
+        userRepository.save(userEntity);
     }
 }
