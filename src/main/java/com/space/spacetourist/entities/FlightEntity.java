@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.exception.DataException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class FlightEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private DataException departureDate;
+    private Date departureDate;
 
     private Date arrivalDate;
 
@@ -39,7 +38,7 @@ public class FlightEntity {
 
 
     @Builder
-    public FlightEntity(DataException departureDate,
+    public FlightEntity(Date departureDate,
                         Date arrivalDate, int numberSeats,
                         double ticketPrice,
                         List<TouristEntity> touristEntities) {
