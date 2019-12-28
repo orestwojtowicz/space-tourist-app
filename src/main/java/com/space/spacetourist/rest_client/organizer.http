@@ -1,7 +1,20 @@
 
-### Exx
+### USER LOGIN AUTH
 
-GET {{host-url}}/blabla/1
+POST {{host-url}}/authenticate
+Content-Type: application/json
+
+{
+"username": "damian",
+"password": "damian"
+}
+###
+
+
+### ALL FLIGHTS
+
+GET {{host-url}}/api/all/flights
+
 
 ###
 

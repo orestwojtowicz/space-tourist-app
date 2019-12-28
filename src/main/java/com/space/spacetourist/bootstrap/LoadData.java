@@ -7,12 +7,14 @@ import com.space.spacetourist.repository.FlightRepository;
 import com.space.spacetourist.repository.TouristRepository;
 import com.space.spacetourist.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Component
+@Profile("dev")
 public class LoadData implements CommandLineRunner {
 
     private final FlightRepository flightRepository;
@@ -118,7 +120,7 @@ public class LoadData implements CommandLineRunner {
     }
     private void createUser() {
 
-        UserEntity userEntity = new UserEntity(UUID.randomUUID().toString(), "damian", "damian");
+        UserEntity userEntity = new UserEntity("damian", "damian", "damian@damian.com");
         userRepository.save(userEntity);
     }
 }

@@ -3,6 +3,7 @@ package com.space.spacetourist.security.config;
 
 import com.space.spacetourist.security.filters.JwtRequestFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate").permitAll()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/**/api/all/flights").permitAll()
+                .antMatchers(HttpMethod.GET,"/**/flight/tourist/{id}").permitAll()
+                .antMatchers("/**/authenticate").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/hello/**").permitAll()
                 .anyRequest().authenticated()

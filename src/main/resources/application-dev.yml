@@ -1,0 +1,18 @@
+# develop data source configuration
+spring:
+  h2:
+    console:
+      enabled: true
+
+
+  datasource:
+    name: damian
+    username: damian
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+
+
