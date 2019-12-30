@@ -23,7 +23,7 @@ public class FlightEntityDTO {
     private Date departureDate;
 
     @NotNull
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date arrivalDateTime;
 
     @NotNull

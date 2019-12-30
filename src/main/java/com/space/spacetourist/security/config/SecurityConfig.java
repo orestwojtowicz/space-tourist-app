@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/authenticate").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/hello/**").permitAll()
+                .antMatchers("/api/add/tourist").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // applay filter chain

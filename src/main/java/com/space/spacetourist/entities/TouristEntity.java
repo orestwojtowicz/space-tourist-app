@@ -1,6 +1,7 @@
 package com.space.spacetourist.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class TouristEntity {
     private String country;
 
     private String remarsk;
-
+    @JsonFormat(pattern = "d-M-yyyy HH:mm")
     private Date birthDate;
 
 
