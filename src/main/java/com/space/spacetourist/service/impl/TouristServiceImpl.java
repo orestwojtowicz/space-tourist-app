@@ -13,11 +13,16 @@ import com.space.spacetourist.ui.model.response.ErrorMessages;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -80,14 +85,33 @@ public class TouristServiceImpl extends DtoMapper implements TouristService {
     }
 
     @Override
-    public List<TouristDto> findAllByFlightEntities(String touristId) {
+    public List<TouristDto> getAllTourists(int page, int limit) {
+
+        List<TouristDto> returnValue = new ArrayList<>();
+
+        if (page > 0) page = page - 1;
+
+        Pageable pageable = PageRequest.of(page, limit);
+
+        Page<TouristEntity> usersPage = touristRepository.findAll(pageable);
+        log.info("USERS PAGE " + usersPage.getContent());
+
+        List<TouristEntity> tourists = usersPage.getContent();
+
+        for (TouristEntity touristEntity : tourists) {
+            TouristDto touristDto = new TouristDto();
+            log.info("FOR LOOP " + touristEntity.getFirstName());
+            BeanUtils.copyProperties(touristEntity, touristDto);
+            returnValue.add(touristDto);
+        }
 
 
-        List<TouristEntity> all = touristRepository.findAllByTouristId(touristId);
+        log.info("RETURN VALUE SERVICE " + returnValue);
+
+        return returnValue;
 
 
-        log.info("ALL " + all);
-        return new List<TouristDto>();
+
 
     }
 }

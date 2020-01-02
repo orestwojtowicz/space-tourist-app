@@ -10,10 +10,14 @@ import com.space.spacetourist.ui.model.response.OperationStatusModel;
 import com.space.spacetourist.ui.model.response.RequestOperationStatus;
 import com.space.spacetourist.ui.model.response.TouristRest;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,11 +71,27 @@ public class TouristController extends DtoMapper {
     }
 
 
-    @GetMapping("/all/{id}")
-    public List<TouristEntity> getAll(@PathVariable String id) {
-        TouristDto entity = touristService.getSingleTourist(id);
-        return touristService.findAllByFlightEntities(convertToEntity(entity))
+    @GetMapping
+    public List<TouristRest> getTourists(@RequestParam(value = "page", defaultValue = "0") int page,
+                                         @RequestParam(value = "limit", defaultValue = "2") int limit) {
+
+        List<TouristRest> returnValue = new ArrayList<>();
+        List<TouristDto> tourists = touristService.getAllTourists(page, limit);
+
+        Type listType = new TypeToken<List<TouristRest>>() {
+            }.getType();
+
+
+        returnValue = new ModelMapper().map(tourists, listType);
+
+        log.info("RETURN KONTROLLEr " + returnValue);
+
+        return returnValue;
+
     }
+
+
+
 
 }
 

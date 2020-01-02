@@ -10,7 +10,8 @@ public interface TouristService {
 
     TouristDto getSingleTourist(String touristId);
     void deleteTourist(String touristId);
-    List<TouristDto> findAllByFlightEntities(String touristId);
+
+    List<TouristDto> getAllTourists(int page, int limit);
 
 
 
