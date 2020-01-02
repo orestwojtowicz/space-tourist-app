@@ -1,44 +1,28 @@
-package com.space.spacetourist.view.flight;
+package com.space.spacetourist.ui.model.request;
 
-import com.space.spacetourist.entities.FlightEntity;
-import com.space.spacetourist.entities.TouristEntity;
-import lombok.Builder;
+import com.space.spacetourist.entity.FlightEntity;
+import com.space.spacetourist.entity.TouristEntity;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
-public class FlightEntityDTO {
+public class FlightRequestModel {
 
-    private String id;
-
-    @NotNull
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date departureDate;
-
-    @NotNull
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date arrivalDateTime;
-
-    @NotNull
-    @NumberFormat
     private int numberSeats;
-
-    @NotNull
-    @NumberFormat
     private double tickerPrice;
 
     List<TouristEntity> touristEntities;
 
-    public FlightEntityDTO(FlightEntity flightEntity) {
+    public FlightRequestModel(FlightEntity flightEntity) {
 
-        id = UUID.randomUUID().toString();
         departureDate = flightEntity.getDepartureDate();
         arrivalDateTime = flightEntity.getArrivalDate();
         numberSeats = flightEntity.getNumberSeats();

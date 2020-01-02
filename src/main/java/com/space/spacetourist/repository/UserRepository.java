@@ -1,7 +1,8 @@
 package com.space.spacetourist.repository;
 
 
-import com.space.spacetourist.entities.UserEntity;
+
+import com.space.spacetourist.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

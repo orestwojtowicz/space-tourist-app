@@ -1,7 +1,7 @@
-package com.space.spacetourist.services;
+package com.space.spacetourist.service.impl;
 
 
-import com.space.spacetourist.entities.UserEntity;
+import com.space.spacetourist.entity.UserEntity;
 import com.space.spacetourist.repository.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

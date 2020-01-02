@@ -1,4 +1,4 @@
-package com.space.spacetourist.entities;
+package com.space.spacetourist.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,6 +22,8 @@ public class TouristEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String touristId;
+
     private String firstName;
 
     private String lastName;
@@ -37,6 +39,9 @@ public class TouristEntity {
 
 
 
+
+
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tourists_flights",
@@ -45,14 +50,24 @@ public class TouristEntity {
             inverseJoinColumns = {
                     @JoinColumn(name = "flight_entity_id", referencedColumnName = "id")})
     @ToString.Exclude
-    private List<FlightEntity> flightEntities = new ArrayList<>();
+    private List<FlightEntity> flightEntities;
+
+
+    public void addFlight(FlightEntity flightEntity) {
+        flightEntities = new ArrayList<>();
+        flightEntities.add(flightEntity);
+    }
+
+
 
 
     @Builder
     public TouristEntity(String firstName,
                          String lastName, String gender,
-                         String country, String remarsk, Date birthDate) {
+                         String country, String remarsk,
+                         Date birthDate, String touristId) {
 
+        this.touristId = touristId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -63,9 +78,6 @@ public class TouristEntity {
     }
 
 
-    public void addFlight(FlightEntity flightEntity) {
-        flightEntities.add(flightEntity);
-    }
 }
 
 

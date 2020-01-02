@@ -1,4 +1,4 @@
-package com.space.spacetourist.entities;
+package com.space.spacetourist.entity;
 
 
 import lombok.Builder;
@@ -19,18 +19,13 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String userId;
     private String username;
-
     private String password;
-
     private String userEmail;
 
 
-    @Builder
-    public UserEntity(String username,
-                      String password,
-                      String userEmail) {
+    public UserEntity(String username, String password, String userEmail) {
         this.username = username;
         this.password = password;
         this.userEmail = userEmail;

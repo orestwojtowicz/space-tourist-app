@@ -1,8 +1,8 @@
 package com.space.spacetourist.bootstrap;
 
-import com.space.spacetourist.entities.FlightEntity;
-import com.space.spacetourist.entities.TouristEntity;
-import com.space.spacetourist.entities.UserEntity;
+import com.space.spacetourist.entity.FlightEntity;
+import com.space.spacetourist.entity.TouristEntity;
+import com.space.spacetourist.entity.UserEntity;
 import com.space.spacetourist.repository.FlightRepository;
 import com.space.spacetourist.repository.TouristRepository;
 import com.space.spacetourist.repository.UserRepository;
@@ -42,6 +42,7 @@ public class LoadData implements CommandLineRunner {
 
         TouristEntity touristEntity1 = TouristEntity.builder()
 
+                .touristId(UUID.randomUUID().toString())
                 .firstName("Pawel")
                 .lastName("Gawel")
                 .gender("Male")
@@ -52,6 +53,7 @@ public class LoadData implements CommandLineRunner {
 
         TouristEntity touristEntity2 = TouristEntity.builder()
 
+                .touristId(UUID.randomUUID().toString())
                 .firstName("Damian")
                 .lastName("Tramian")
                 .gender("Female")

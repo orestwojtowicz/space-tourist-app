@@ -1,7 +1,7 @@
 package com.space.spacetourist.security.filters;
 
 import com.space.spacetourist.security.jwt.JwtUtil;
-import com.space.spacetourist.services.MyUserDetailsService;
+import com.space.spacetourist.service.impl.MyUserDetailsService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

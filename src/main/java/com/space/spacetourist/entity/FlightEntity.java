@@ -1,4 +1,4 @@
-package com.space.spacetourist.entities;
+package com.space.spacetourist.entity;
 
 
 import lombok.Builder;
@@ -21,6 +21,8 @@ public class FlightEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String flightId;
+
     private Date departureDate;
 
     private Date arrivalDate;
@@ -34,7 +36,9 @@ public class FlightEntity {
             fetch = FetchType.LAZY
     )
     @ToString.Exclude
-    List<TouristEntity> touristEntities = new ArrayList<>();
+    List<TouristEntity> touristEntities;
+
+
 
 
     @Builder

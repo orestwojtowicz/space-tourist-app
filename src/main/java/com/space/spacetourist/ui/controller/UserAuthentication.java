@@ -1,10 +1,10 @@
-package com.space.spacetourist.controller;
+package com.space.spacetourist.ui.controller;
 
 
 import com.space.spacetourist.security.auth_model.AuthenticationRequest;
 import com.space.spacetourist.security.auth_model.AuthenticationResponse;
 import com.space.spacetourist.security.jwt.JwtUtil;
-import com.space.spacetourist.services.MyUserDetailsService;
+import com.space.spacetourist.service.impl.MyUserDetailsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
