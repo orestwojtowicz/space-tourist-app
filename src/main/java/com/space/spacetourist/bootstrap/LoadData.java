@@ -1,6 +1,7 @@
 package com.space.spacetourist.bootstrap;
 
 import com.space.spacetourist.entity.FlightEntity;
+import com.space.spacetourist.entity.Gender;
 import com.space.spacetourist.entity.TouristEntity;
 import com.space.spacetourist.entity.UserEntity;
 import com.space.spacetourist.repository.FlightRepository;
@@ -45,7 +46,7 @@ public class LoadData implements CommandLineRunner {
                 .touristId(UUID.randomUUID().toString())
                 .firstName("Pawel")
                 .lastName("Gawel")
-                .gender("Male")
+                .gender(Gender.Male)
                 .country("Poland")
                 .remarsk("good")
                 .birthDate(new Date())
@@ -56,7 +57,7 @@ public class LoadData implements CommandLineRunner {
                 .touristId(UUID.randomUUID().toString())
                 .firstName("Damian")
                 .lastName("Tramian")
-                .gender("Female")
+                .gender(Gender.Female)
                 .country("Germany")
                 .remarsk("Bad")
                 .birthDate(new Date())

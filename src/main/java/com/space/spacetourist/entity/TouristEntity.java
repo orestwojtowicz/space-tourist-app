@@ -28,7 +28,7 @@ public class TouristEntity {
 
     private String lastName;
 
-    private String gender;
+    private Gender gender;
 
     private String country;
 
@@ -63,7 +63,7 @@ public class TouristEntity {
 
     @Builder
     public TouristEntity(String firstName,
-                         String lastName, String gender,
+                         String lastName, Gender gender,
                          String country, String remarsk,
                          Date birthDate, String touristId) {
 
