@@ -1,6 +1,8 @@
 package com.space.spacetourist.service;
 
 
+import com.space.spacetourist.entity.FlightEntity;
+import com.space.spacetourist.shared.FlightDto;
 import com.space.spacetourist.shared.TouristDto;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public interface TouristService {
 
     List<TouristDto> getAllTourists(int page, int limit);
 
+
+    List<FlightDto> getAllTouristFlights(String touristId);
 
 
 }

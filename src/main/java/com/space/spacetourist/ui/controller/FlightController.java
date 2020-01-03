@@ -1,33 +1,56 @@
 package com.space.spacetourist.ui.controller;
 
-import com.space.spacetourist.entity.FlightEntity;
-import com.space.spacetourist.repository.FlightRepository;
-import com.space.spacetourist.repository.TouristRepository;
+
+import com.space.spacetourist.service.FlightService;
+import com.space.spacetourist.shared.FlightDto;
+import com.space.spacetourist.ui.model.response.FlightRest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.List;
 
 
-@Controller
+
+
+@RequiredArgsConstructor
+@RestController
 @Slf4j
 @RequestMapping("/api")
 public class FlightController {
 
 
-    private final FlightRepository flightRepository;
-    private final TouristRepository touristRepository;
+    private final FlightService flightService;
 
 
-    public FlightController(FlightRepository flightRepository,
-                            TouristRepository touristRepository
-                           ) {
-        this.flightRepository = flightRepository;
-        this.touristRepository = touristRepository;
 
-    }
+    @GetMapping("/flight/{flightId}")
+   public FlightRest getAllFlights(@PathVariable String flightId) {
+
+
+        log.info("KONTROLER ");
+
+       FlightDto flightDto = new FlightDto();
+
+       // PRZEZ TURYSTE JA TO ROBIE
+
+       log.info("FLIGHTS " + flightDto.toString());
+
+       ModelMapper modelMapper = new ModelMapper();
+
+       FlightRest returnValue = new FlightRest();
+
+
+       returnValue = modelMapper.map(flightDto,FlightRest.class);
+
+
+       return returnValue;
+
+
+   }
+
+
 
     }
 

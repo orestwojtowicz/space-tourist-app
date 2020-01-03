@@ -1,6 +1,8 @@
 package com.space.spacetourist.shared;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.space.spacetourist.entity.Gender;
 import lombok.Data;
 import lombok.ToString;
@@ -20,10 +22,11 @@ public class TouristDto {
     private Gender gender;
     private String country;
     private String remarsk;
-    @JsonFormat(pattern = "d-M-yyyy HH:mm")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date birthDate;
 
     @ToString.Exclude
+    @JsonIgnore
     private List<FlightDto> flightEntities;
 
 

@@ -1,16 +1,16 @@
 package com.space.spacetourist.ui.controller;
 
-import com.space.spacetourist.entity.FlightEntity;
+
 import com.space.spacetourist.entity.TouristEntity;
 import com.space.spacetourist.mapper.DtoMapper;
 import com.space.spacetourist.service.impl.TouristServiceImpl;
+import com.space.spacetourist.shared.FlightDto;
 import com.space.spacetourist.shared.TouristDto;
 import com.space.spacetourist.ui.model.request.TouristRequestModel;
 import com.space.spacetourist.ui.model.response.OperationStatusModel;
 import com.space.spacetourist.ui.model.response.RequestOperationStatus;
 import com.space.spacetourist.ui.model.response.TouristRest;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +28,12 @@ import java.util.List;
 @RequestMapping(TouristController.TOURIST_URL)
 public class TouristController extends DtoMapper {
 
+    public static final String TOURIST_URL = "/api";
 
     /**
      * @return model/response/TouristRest.class
      */
 
-    public static final String TOURIST_URL = "/api";
 
     private final TouristServiceImpl touristService;
 
@@ -71,6 +71,8 @@ public class TouristController extends DtoMapper {
     }
 
 
+    // http://localhost:8080/api?page=1&limit=1
+
     @GetMapping
     public List<TouristRest> getTourists(@RequestParam(value = "page", defaultValue = "0") int page,
                                          @RequestParam(value = "limit", defaultValue = "2") int limit) {
@@ -78,17 +80,24 @@ public class TouristController extends DtoMapper {
         List<TouristRest> returnValue = new ArrayList<>();
         List<TouristDto> tourists = touristService.getAllTourists(page, limit);
 
-        Type listType = new TypeToken<List<TouristRest>>() {
-            }.getType();
-
-
-        returnValue = new ModelMapper().map(tourists, listType);
-
-        log.info("RETURN KONTROLLEr " + returnValue);
+        Type listType = new TypeToken<List<TouristRest>>() {}.getType();
+        returnValue = convertToTypeToken(tourists, listType);
 
         return returnValue;
+    }
+
+
+
+
+    @GetMapping("/v2/{touristId}")
+    public List<FlightDto> getAllTouristFlights(@PathVariable String touristId) {
+
+
+        return touristService.getAllTouristFlights(touristId);
+
 
     }
+
 
 
 

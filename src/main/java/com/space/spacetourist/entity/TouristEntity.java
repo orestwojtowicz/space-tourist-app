@@ -50,11 +50,11 @@ public class TouristEntity {
             inverseJoinColumns = {
                     @JoinColumn(name = "flight_entity_id", referencedColumnName = "id")})
     @ToString.Exclude
-    private List<FlightEntity> flightEntities;
+    private List<FlightEntity> flightEntities = new ArrayList<>();
 
 
     public void addFlight(FlightEntity flightEntity) {
-        flightEntities = new ArrayList<>();
+
         flightEntities.add(flightEntity);
     }
 

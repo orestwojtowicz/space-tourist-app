@@ -69,6 +69,7 @@ public class LoadData implements CommandLineRunner {
 
 
         FlightEntity flightEntity1 = FlightEntity.builder()
+                .flightId(UUID.randomUUID().toString())
                 .departureDate(new Date())
                 .arrivalDate(new Date())
                 .numberSeats(500)
@@ -78,9 +79,19 @@ public class LoadData implements CommandLineRunner {
 
 
         FlightEntity flightEntity2 = FlightEntity.builder()
+                .flightId(UUID.randomUUID().toString())
                 .departureDate(new Date())
                 .arrivalDate(new Date())
                 .numberSeats(1000)
+                .ticketPrice(100.40)
+                .build();
+
+
+        FlightEntity flightEntity3 = FlightEntity.builder()
+                .flightId(UUID.randomUUID().toString())
+                .departureDate(new Date())
+                .arrivalDate(new Date())
+                .numberSeats(123)
                 .ticketPrice(100.40)
                 .build();
 
@@ -98,16 +109,16 @@ public class LoadData implements CommandLineRunner {
         touristRepository.save(touristEntity1);
         touristRepository.save(touristEntity2);
 
+
         flightRepository.save(flightEntity1);
         flightRepository.save(flightEntity2);
+        flightRepository.save(flightEntity3);
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         touristEntity1.addFlight(flightEntity1);
-        //  touristEntity1.addFlight(flightEntity2);
+        touristEntity1.addFlight(flightEntity2);
         touristEntity2.addFlight(flightEntity1);
-        touristEntity2.addFlight(flightEntity1);
-        touristEntity2.addFlight(flightEntity1);
-        touristEntity2.addFlight(flightEntity1);
+        touristEntity2.addFlight(flightEntity3);
 
 
 
@@ -119,6 +130,7 @@ public class LoadData implements CommandLineRunner {
 
         flightRepository.save(flightEntity1);
         flightRepository.save(flightEntity2);
+        flightRepository.save(flightEntity3);
 
     }
     private void createUser() {

@@ -45,7 +45,8 @@ public class FlightEntity {
     public FlightEntity(Date departureDate,
                         Date arrivalDate, int numberSeats,
                         double ticketPrice,
-                        List<TouristEntity> touristEntities) {
+                        List<TouristEntity> touristEntities, String flightId) {
+        this.flightId = flightId;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.numberSeats = numberSeats;
