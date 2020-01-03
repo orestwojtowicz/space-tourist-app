@@ -3,13 +3,14 @@ package com.space.spacetourist.service.impl;
 import com.space.spacetourist.entity.FlightEntity;
 import com.space.spacetourist.entity.TouristEntity;
 import com.space.spacetourist.mapper.DtoMapper;
+import com.space.spacetourist.mapper.RestMapper;
 import com.space.spacetourist.repository.TouristRepository;
 import com.space.spacetourist.service.TouristService;
 import com.space.spacetourist.shared.FlightDto;
 import com.space.spacetourist.shared.TouristDto;
 import com.space.spacetourist.ui.controller.exceptions.UserServiceException;
 import com.space.spacetourist.ui.model.request.TouristRequestModel;
-import com.space.spacetourist.ui.model.response.ErrorMessage;
+
 import com.space.spacetourist.ui.model.response.ErrorMessages;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -115,35 +116,27 @@ public class TouristServiceImpl extends DtoMapper implements TouristService {
 
     }
 
+    /**
+     * Get single tourist and all flights
+     * */
+
     @Override
     public List<FlightDto> getAllTouristFlights(String touristId) {
 
-
         FlightDto flightDto = new FlightDto();
-
         TouristEntity touristEntity = touristRepository.findByTouristId(touristId);
 
         if (touristEntity == null)
             throw new UsernameNotFoundException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
-
         List<FlightDto> returnValue = new ArrayList<>();
-        List<FlightEntity>  flightEntities = touristEntity.getFlightEntities();
-
-        ModelMapper modelMapper = new ModelMapper();
+        List<FlightEntity> flightEntities = touristEntity.getFlightEntities();
 
         for (FlightEntity flightEntity : flightEntities) {
-           // returnValue.add(modelMapper.map(flightEntity, FlightDto.class));
-
             returnValue.add(convertToDto(flightEntity, flightDto));
-
-
-
         }
 
-        log.info("ZWRACAM " + returnValue.toString());
-
-
+        log.info("RETURNING --> " + returnValue.toString());
 
         return returnValue;
     }

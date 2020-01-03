@@ -2,11 +2,12 @@ package com.space.spacetourist.ui.controller;
 
 
 import com.space.spacetourist.entity.TouristEntity;
-import com.space.spacetourist.mapper.DtoMapper;
+import com.space.spacetourist.mapper.RestMapper;
 import com.space.spacetourist.service.impl.TouristServiceImpl;
 import com.space.spacetourist.shared.FlightDto;
 import com.space.spacetourist.shared.TouristDto;
 import com.space.spacetourist.ui.model.request.TouristRequestModel;
+import com.space.spacetourist.ui.model.response.FlightRest;
 import com.space.spacetourist.ui.model.response.OperationStatusModel;
 import com.space.spacetourist.ui.model.response.RequestOperationStatus;
 import com.space.spacetourist.ui.model.response.TouristRest;
@@ -23,10 +24,11 @@ import java.util.List;
 /**
  * Created by damiass on Dec, 2019
  */
+
 @RestController
 @Slf4j
 @RequestMapping(TouristController.TOURIST_URL)
-public class TouristController extends DtoMapper {
+public class TouristController extends RestMapper {
 
     public static final String TOURIST_URL = "/api";
 
@@ -89,11 +91,16 @@ public class TouristController extends DtoMapper {
 
 
 
-    @GetMapping("/v2/{touristId}")
-    public List<FlightDto> getAllTouristFlights(@PathVariable String touristId) {
+    @GetMapping("/all/flights/{touristId}")
+    public List<FlightRest> getAllTouristFlights(@PathVariable String touristId) {
+
+        List<FlightRest> returnValue = new ArrayList<>();
+        List<FlightDto> touristFlights = touristService.getAllTouristFlights(touristId);
+
+        returnValue = convertFlightsToRest(touristFlights, returnValue);
 
 
-        return touristService.getAllTouristFlights(touristId);
+        return returnValue;
 
 
     }
