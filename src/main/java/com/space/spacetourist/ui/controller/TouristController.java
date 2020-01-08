@@ -9,7 +9,7 @@ import com.space.spacetourist.shared.TouristDto;
 import com.space.spacetourist.ui.model.request.TouristRequestModel;
 import com.space.spacetourist.ui.model.response.FlightRest;
 import com.space.spacetourist.ui.model.response.OperationStatusModel;
-import com.space.spacetourist.ui.model.response.RequestOperationStatus;
+import com.space.spacetourist.ui.model.response.operation_status.RequestOperationStatus;
 import com.space.spacetourist.ui.model.response.TouristRest;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.TypeToken;
@@ -49,7 +49,6 @@ public class TouristController extends RestMapper {
     public TouristEntity saveNewTourist(@Valid @RequestBody TouristRequestModel touristEntityDTO) {
 
         return touristService.createNewTourist(touristEntityDTO);
-
     }
 
     @GetMapping(value = "/get/tourist/{touristId}")
@@ -96,13 +95,9 @@ public class TouristController extends RestMapper {
 
         List<FlightRest> returnValue = new ArrayList<>();
         List<FlightDto> touristFlights = touristService.getAllTouristFlights(touristId);
-
         returnValue = convertFlightsToRest(touristFlights, returnValue);
 
-
         return returnValue;
-
-
     }
 
 

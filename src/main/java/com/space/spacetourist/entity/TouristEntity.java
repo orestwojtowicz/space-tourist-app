@@ -28,6 +28,7 @@ public class TouristEntity {
 
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private String country;

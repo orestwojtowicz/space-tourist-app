@@ -1,8 +1,10 @@
 package com.space.spacetourist.mapper;
 
 import com.space.spacetourist.shared.FlightDto;
+import com.space.spacetourist.shared.UserDto;
 import com.space.spacetourist.ui.model.response.FlightRest;
 import com.space.spacetourist.ui.model.response.TouristRest;
+import com.space.spacetourist.ui.model.response.UserRest;
 import org.modelmapper.ModelMapper;
 
 import java.lang.reflect.Type;
@@ -36,6 +38,24 @@ public class RestMapper {
     public List<FlightRest> convertFlightsToRest(List<FlightDto> objects, List<FlightRest> flightRests) {
         return new ModelMapper().map(objects, flightRests.getClass());
     }
+
+    /*
+    *  USER MAPPER
+    * **/
+
+
+    public UserRest convertToRestUser(Object object, UserRest userRest) {
+        return new ModelMapper().map(object, userRest.getClass());
+    }
+
+    public UserDto convertToDtoUser(Object object, UserDto userDto) {
+        return new ModelMapper().map(object, userDto.getClass());
+    }
+
+
+
+
+
 
 
 }

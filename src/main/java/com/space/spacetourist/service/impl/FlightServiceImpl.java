@@ -7,6 +7,7 @@ import com.space.spacetourist.repository.FlightRepository;
 import com.space.spacetourist.repository.TouristRepository;
 import com.space.spacetourist.service.FlightService;
 import com.space.spacetourist.shared.FlightDto;
+import com.space.spacetourist.shared.TouristDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -49,10 +50,52 @@ public class FlightServiceImpl extends DtoMapper implements FlightService {
     }
 
     @Override
+    public List<TouristDto> getAllTouristFromOneFlight(String flightId) {
+
+        List<TouristDto> returnValue = new ArrayList<>();
+        FlightEntity flightEntity = flightRepository.findByFlightId(flightId);
+
+        if (flightEntity == null) return returnValue;
+
+        // List<TouristEntity> touristEntities =
+
+
+        return null;
+    }
+
+    @Override
     public FlightDto getFlights(String flightId) {
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -29,12 +29,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(myUserDetailsService);
+
+
+
+
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+
+        http.
+                csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/**/api/all/flights").permitAll()
                 .antMatchers(HttpMethod.GET,"/**/flight/tourist/{id}").permitAll()
@@ -43,11 +49,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hello/**").permitAll()
                 .antMatchers("/api/add/tourist").permitAll()
                 .antMatchers("/api/get/tourist/{id}").permitAll()
+                .antMatchers("/**/create/**").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // applay filter chain
+
+
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers().frameOptions().sameOrigin(); // REMOVE LATER
+
+
 
 
     }

@@ -1,36 +1,35 @@
 package com.space.spacetourist.ui.controller;
 
 
+import com.space.spacetourist.mapper.RestMapper;
 import com.space.spacetourist.security.auth_model.AuthenticationRequest;
 import com.space.spacetourist.security.auth_model.AuthenticationResponse;
 import com.space.spacetourist.security.jwt.JwtUtil;
+import com.space.spacetourist.service.UserService;
 import com.space.spacetourist.service.impl.MyUserDetailsService;
+import com.space.spacetourist.shared.UserDto;
+import com.space.spacetourist.ui.model.request.UserRequestModel;
+import com.space.spacetourist.ui.model.response.UserRest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
-public class UserAuthentication {
+@RequiredArgsConstructor
+public class UserController extends RestMapper {
 
     private final AuthenticationManager authenticationManager;
     private final MyUserDetailsService myUserDetailsService;
     private final JwtUtil jwtUtil;
+    private final UserService userService;
 
-    public UserAuthentication(AuthenticationManager authenticationManager,
-                              MyUserDetailsService myUserDetailsService,
-                              JwtUtil jwtUtil) {
 
-        this.authenticationManager = authenticationManager;
-        this.myUserDetailsService = myUserDetailsService;
-        this.jwtUtil = jwtUtil;
-
-    }
 
 
 
@@ -57,6 +56,26 @@ public class UserAuthentication {
     }
 
 
+
+
+    @PostMapping("/create/user")
+    public UserRest createUser(@RequestBody UserRequestModel userRequestModel) {
+
+        UserRest returnValue = new UserRest();
+
+
+
+        UserDto createUser = new UserDto();
+
+       createUser = userService.createNewUser(convertToDtoUser(userRequestModel, createUser));
+
+        returnValue = convertToRestUser(createUser, returnValue);
+
+        log.info("CONTROLLER " + returnValue);
+
+
+        return returnValue;
+    }
 
 
 

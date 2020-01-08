@@ -1,7 +1,7 @@
 package com.space.spacetourist.service;
 
 
-import com.space.spacetourist.entity.FlightEntity;
+
 import com.space.spacetourist.shared.FlightDto;
 import com.space.spacetourist.shared.TouristDto;
 

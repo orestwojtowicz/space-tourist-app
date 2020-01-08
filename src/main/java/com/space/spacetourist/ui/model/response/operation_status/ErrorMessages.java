@@ -1,4 +1,4 @@
-package com.space.spacetourist.ui.model.response;
+package com.space.spacetourist.ui.model.response.operation_status;
 
 
 public enum ErrorMessages {

@@ -13,6 +13,7 @@ public class FlightDto {
 
 
     private Long id;
+    private String flightId;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date departureDate;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")

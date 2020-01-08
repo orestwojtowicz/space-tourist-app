@@ -3,7 +3,6 @@ package com.space.spacetourist.service.impl;
 import com.space.spacetourist.entity.FlightEntity;
 import com.space.spacetourist.entity.TouristEntity;
 import com.space.spacetourist.mapper.DtoMapper;
-import com.space.spacetourist.mapper.RestMapper;
 import com.space.spacetourist.repository.TouristRepository;
 import com.space.spacetourist.service.TouristService;
 import com.space.spacetourist.shared.FlightDto;
@@ -11,11 +10,10 @@ import com.space.spacetourist.shared.TouristDto;
 import com.space.spacetourist.ui.controller.exceptions.UserServiceException;
 import com.space.spacetourist.ui.model.request.TouristRequestModel;
 
-import com.space.spacetourist.ui.model.response.ErrorMessages;
+import com.space.spacetourist.ui.model.response.operation_status.ErrorMessages;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +22,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

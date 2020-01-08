@@ -1,9 +1,10 @@
 package com.space.spacetourist.entity;
 
 
-import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @Entity
 @Data
 @NoArgsConstructor
-public class UserEntity {
+public class UserEntity  {
 
 
     @Id
@@ -30,4 +31,7 @@ public class UserEntity {
         this.password = password;
         this.userEmail = userEmail;
     }
+
+
+
 }

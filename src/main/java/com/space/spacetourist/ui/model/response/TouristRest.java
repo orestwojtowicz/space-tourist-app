@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class TouristRest {
     private String touristId;
     private String firstName;
     private String lastName;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String country;
     private String remarsk;
