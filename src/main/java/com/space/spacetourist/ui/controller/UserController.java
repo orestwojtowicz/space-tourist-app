@@ -18,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -61,13 +62,16 @@ public class UserController extends RestMapper {
 
 
     @RequestMapping(value = "/create/user", method = RequestMethod.POST)
-    public UserRest createUser(@RequestBody UserRequestModel userRequestModel) {
+    public UserRest createUser(@RequestBody UserRequestModel userRequestModel, Model model) {
 
+        model.addAttribute("user",userRequestModel);
         UserRest returnValue = new UserRest();
         UserDto createUser = new UserDto();
         createUser = userService.createNewUser(convertToDtoUser(userRequestModel, createUser));
         returnValue = convertToRestUser(createUser, returnValue);
-        emailSender.sendEmail("damianwojtowicz94@gmail.com","subject","content");
+
+       emailSender.sendWelcomeEmail(createUser);
+       log.info("WYSLANO ");
         return returnValue;
     }
 

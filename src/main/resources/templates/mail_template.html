@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 
-    <h1>GOWNO JEDNO WIELKIE xD</h1>
+
 </head>
-<body>
+<body >
+
+
+<h1>Hi from Orestto :)</h1>
+<p th:text="|Dear ${user.getUsername()}|">Dear Username</p>
+<p>Welcome to your new favorite site.</p>
+
 
 </body>
 </html>
