@@ -55,7 +55,6 @@ public class TouristEntity {
 
 
     public void addFlight(FlightEntity flightEntity) {
-
         flightEntities.add(flightEntity);
     }
 

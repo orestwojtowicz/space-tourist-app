@@ -36,8 +36,12 @@ public class FlightEntity {
             fetch = FetchType.LAZY
     )
     @ToString.Exclude
-    List<TouristEntity> touristEntities;
+    List<TouristEntity> touristEntities = new ArrayList<>();
 
+
+    public void addTouristToFlight(TouristEntity touristEntity) {
+        touristEntities.add(touristEntity);
+    }
 
 
 
