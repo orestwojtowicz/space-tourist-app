@@ -6,7 +6,9 @@ import com.space.spacetourist.mapper.DtoMapper;
 import com.space.spacetourist.repository.UserRepository;
 import com.space.spacetourist.service.UserService;
 import com.space.spacetourist.shared.UserDto;
+import com.space.spacetourist.ui.controller.exceptions.UserServiceException;
 import com.space.spacetourist.ui.model.request.UserRequestModel;
+import com.space.spacetourist.ui.model.response.operation_status.ErrorMessages;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,6 +46,14 @@ public class MyUserDetailsService extends DtoMapper implements UserDetailsServic
 
     @Override
     public UserDto createNewUser(UserDto userDto) {
+
+
+     /*   if (userRepository.findByUsername(userDto.getUsername()).get() == null) {
+            throw new UserServiceException(ErrorMessages.RECORD_ALREADY_EXISTS.getErrorMessage());
+
+        }
+*/
+
 
         UserDto returnValue = new UserDto();
         UserEntity userEntity = convertToEntityUser(userDto, new UserEntity());

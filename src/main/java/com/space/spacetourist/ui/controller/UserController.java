@@ -6,6 +6,7 @@ import com.space.spacetourist.security.auth_model.AuthenticationRequest;
 import com.space.spacetourist.security.auth_model.AuthenticationResponse;
 import com.space.spacetourist.security.jwt.JwtUtil;
 import com.space.spacetourist.service.UserService;
+import com.space.spacetourist.service.impl.EmailSenderImpl;
 import com.space.spacetourist.service.impl.MyUserDetailsService;
 import com.space.spacetourist.shared.UserDto;
 import com.space.spacetourist.ui.model.request.UserRequestModel;
@@ -28,6 +29,7 @@ public class UserController extends RestMapper {
     private final MyUserDetailsService myUserDetailsService;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+    private final EmailSenderImpl emailSender;
 
 
 
@@ -58,22 +60,14 @@ public class UserController extends RestMapper {
 
 
 
-    @PostMapping("/create/user")
+    @RequestMapping(value = "/create/user", method = RequestMethod.POST)
     public UserRest createUser(@RequestBody UserRequestModel userRequestModel) {
 
         UserRest returnValue = new UserRest();
-
-
-
         UserDto createUser = new UserDto();
-
-       createUser = userService.createNewUser(convertToDtoUser(userRequestModel, createUser));
-
+        createUser = userService.createNewUser(convertToDtoUser(userRequestModel, createUser));
         returnValue = convertToRestUser(createUser, returnValue);
-
-        log.info("CONTROLLER " + returnValue);
-
-
+        emailSender.sendEmail("damianwojtowicz94@gmail.com","subject","content");
         return returnValue;
     }
 
